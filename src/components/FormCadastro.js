@@ -1,7 +1,27 @@
 import React, { Component } from 'react';
-import { View, TextInput, Button, ImageBackground, Text } from 'react-native';
+import { View, TextInput, Button, ImageBackground, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { modificaEmail, modificaSenha, modificaNome, cadastraUsuario } from '../actions/AutenticacaoActions';
+
+const styles = StyleSheet.create({
+    botaoContainer: {
+        flex: 1,
+        justifyContent: 'center'
+    },
+	button: {
+        backgroundColor: '#115E54',
+        paddingVertical: 10,
+        paddingHorizontal: 30,
+        marginTop: 20,
+        alignItems: 'center'
+      },
+      buttonText: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: 'bold',   
+      }
+});
+
 
 class formCadastro extends Component {
     _cadastraUsuario(){
@@ -39,8 +59,11 @@ class formCadastro extends Component {
 
                         <Text style={{ color:'#ff0000', fontSize: 18 }}>{this.props.erroCadastro}</Text>
                     </View>
-                    <View style={{ flex: 1 }}>
-                        <Button title="Cadastrar" color="#115E54" onPress={() => this._cadastraUsuario()} />
+                    <View style={ styles.botaoContainer }>
+                        <TouchableOpacity style={styles.button} onPress={() => this._cadastraUsuario()}>
+                            <Text style={styles.buttonText}>Cadastrar</Text>
+                        </TouchableOpacity>
+                        {/* <Button title="Cadastrar" color="#115E54" onPress={() => this._cadastraUsuario()} /> --> */}
                     </View>
                 </View>
             </ImageBackground>
