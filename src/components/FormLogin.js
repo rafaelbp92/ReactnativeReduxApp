@@ -1,8 +1,32 @@
 import React from 'react';
-import { View, Text, TextInput, Button, TouchableHighlight, ImageBackground } from 'react-native';
+import { View, Text, TextInput, Button, TouchableHighlight, ImageBackground , StyleSheet, TouchableOpacity} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { modificaEmail, modificaSenha } from '../actions/AutenticacaoActions';
+
+const styles = StyleSheet.create({
+    buttonContainer: {
+        flex: 2,
+        justifyContent: 'center'
+    },
+	button: {
+        backgroundColor: '#115E54',
+        paddingVertical: 8,
+        paddingHorizontal: 30,
+        marginTop: 20,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height:  2},
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 3
+      },
+      buttonText: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: 'bold',   
+      }
+});
 
 const formLogin = props => {
     console.log(props);
@@ -19,8 +43,11 @@ const formLogin = props => {
                         <Text style={{ fontSize: 20, color: '#fff' }}>Ainda não tem cadastro? Cadastre-se</Text>
                     </TouchableHighlight>
                 </View>
-                <View style={{ flex: 2}}>
-                    <Button title="Acessar" color='#115E54' onPress={() => false} />
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity style={styles.button}  onPress={() => false}>
+                        <Text style={styles.buttonText}>Acessar</Text>
+                    </TouchableOpacity>
+                    {/*<Button title="Acessar" color='#115E54' onPress={() => false} />*/}
                 </View>
             </View>
         </ImageBackground>

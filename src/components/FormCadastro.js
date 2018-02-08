@@ -4,16 +4,21 @@ import { connect } from 'react-redux';
 import { modificaEmail, modificaSenha, modificaNome, cadastraUsuario } from '../actions/AutenticacaoActions';
 
 const styles = StyleSheet.create({
-    botaoContainer: {
+    buttonContainer: {
         flex: 1,
         justifyContent: 'center'
     },
 	button: {
         backgroundColor: '#115E54',
-        paddingVertical: 10,
+        paddingVertical: 8,
         paddingHorizontal: 30,
         marginTop: 20,
-        alignItems: 'center'
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height:  2},
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 3
       },
       buttonText: {
         color: 'white',
@@ -59,7 +64,7 @@ class formCadastro extends Component {
 
                         <Text style={{ color:'#ff0000', fontSize: 18 }}>{this.props.erroCadastro}</Text>
                     </View>
-                    <View style={ styles.botaoContainer }>
+                    <View style={ styles.buttonContainer }>
                         <TouchableOpacity style={styles.button} onPress={() => this._cadastraUsuario()}>
                             <Text style={styles.buttonText}>Cadastrar</Text>
                         </TouchableOpacity>
