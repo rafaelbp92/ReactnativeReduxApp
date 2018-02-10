@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, Image, ImageBackground, StyleSheet }  from 'react-native'
+import { View, Text, TouchableOpacity, Image, ImageBackground, StyleSheet }  from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
     buttonContainer: {
@@ -33,7 +34,7 @@ export default props => (
                 <Image source={ require('../imgs/logo.png') } />
             </View> 
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={ () => Actions.formLogin() }>
                     <Text style={styles.buttonText}>Fazer Login</Text>
                 </TouchableOpacity>
             </View>
