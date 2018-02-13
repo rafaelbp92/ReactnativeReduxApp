@@ -1,26 +1,28 @@
+import { MODIFICA_EMAIL, MODIFICA_SENHA, MODIFICA_NOME, CADASTRO_USUARIO_ERRO, CADASTRO_USUARIO_SUCESSO, AUTENTICAR_USUARIO_ERRO, AUTENTICAR_USUARIO_SUCESSO } from './types';
+
 const INITIAL_STATE = {
     nome: '',
     email: '',
     senha: '',
-    erroCadastro: ''
+    erroCadastro: '',
+    erroLogin: ''
 }
 
 export default (state = INITIAL_STATE, action) => {
-    console.log(action);
-    if(action.type == 'modifica_email'){
-        return { ...state, email: action.payload }
+    switch (action.type){
+        case MODIFICA_EMAIL:
+            return { ...state, email: action.payload }
+        case MODIFICA_SENHA:
+            return { ...state, senha: action.payload }
+        case MODIFICA_NOME:
+            return { ...state, nome: action.payload }
+        case CADASTRO_USUARIO_ERRO:
+             return { ...state, erroCadastro: action.payload }
+        case CADASTRO_USUARIO_SUCESSO:
+            return { ...state, nome: '', senha: ''}
+        case AUTENTICAR_USUARIO_ERRO:
+            return { ...state, erroLogin: action.payload }
+        default:
+            return state;
     }
-    if(action.type == 'modifica_senha') {
-        return { ...state, senha: action.payload }
-    }
-    if(action.type == 'modifica_nome') {
-        return { ...state, nome: action.payload }
-    }
-    if(action.type == 'cadastro_usuario_erro') {
-        return { ...state, erroCadastro: action.payload }
-    }
-    if(action.type == 'cadastro_usuario_sucesso') {
-        return { ...state, nome: '', senha: ''}
-    }
-    return state;
 }
