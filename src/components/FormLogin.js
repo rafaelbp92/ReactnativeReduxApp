@@ -31,12 +31,14 @@ const styles = StyleSheet.create({
 class formLogin extends Component {
     _auntenticarUsuario(){
         const { email, senha } = this.props;    
-        this.props.autenticarUsuario(email, senha);
+        this.props.autenticarUsuario({ email, senha });
     }
 
     renderBtnAcessar(){
         if(this.props.loading_login){
-            return ( <ActivityIndicator size="large" /> )
+            return ( 
+                <ActivityIndicator size="large" /> 
+            )
         }
         return(
             <TouchableOpacity style={styles.button}  onPress={() => this._auntenticarUsuario()}>

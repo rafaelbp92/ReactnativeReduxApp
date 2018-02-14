@@ -49,7 +49,7 @@ export const cadastraUsuario = ({ nome, email, senha }) => {
    }
 }
 
-export const autenticarUsuario = ({email, senha}) => {
+export const autenticarUsuario = ({ email, senha }) => {
     return dispatch => {
         dispatch({ type:  PROCESSING_LOGIN})
 
