@@ -5,3 +5,5 @@ export const CADASTRO_USUARIO_ERRO = 'cadastro_usuario_erro';
 export const CADASTRO_USUARIO_SUCESSO = 'cadastro_usuario_sucesso';
 export const AUTENTICAR_USUARIO_ERRO = 'auntenticar_usuario_erro';
 export const AUTENTICAR_USUARIO_SUCESSO = 'auntenticar_usuario_sucesso';
+export const PROCESSING_LOGIN = 'processing_login';
+export const PROCESSING_CADASTRO = 'processing_cadastro';

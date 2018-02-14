@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, Button, ImageBackground, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, TextInput, Button, ImageBackground, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { modificaEmail, modificaSenha, modificaNome, cadastraUsuario } from '../actions/AutenticacaoActions';
 
@@ -39,6 +39,18 @@ class formCadastro extends Component {
         this.props.cadastraUsuario({ nome, email, senha })
     }
 
+
+    renderBtnCadastrar(){
+        if(this.props.loading_cadastro){
+            return ( <ActivityIndicator size="large" /> )
+        }
+        return (
+            <TouchableOpacity style={styles.button} onPress={() => this._cadastraUsuario()}>
+                <Text style={styles.buttonText}>Cadastrar</Text>
+            </TouchableOpacity>
+        )
+    }
+
     render(){
         return (
             <ImageBackground style={{ flex: 1, width: null }} source={require('../imgs/bg.png')}>
@@ -65,9 +77,7 @@ class formCadastro extends Component {
                         <Text style={{ color:'#ff0000', fontSize: 18 }}>{this.props.erroCadastro}</Text>
                     </View>
                     <View style={ styles.buttonContainer }>
-                        <TouchableOpacity style={styles.button} onPress={() => this._cadastraUsuario()}>
-                            <Text style={styles.buttonText}>Cadastrar</Text>
-                        </TouchableOpacity>
+                        { this.renderBtnCadastrar() }                    
                         {/* <Button title="Cadastrar" color="#115E54" onPress={() => this._cadastraUsuario()} /> --> */}
                     </View>
                 </View>
@@ -84,7 +94,8 @@ const mapStateToProps = state => {
             nome: state.AutenticacaoReducer.nome,
             email: state.AutenticacaoReducer.email,
             senha: state.AutenticacaoReducer.senha,
-            erroCadastro: state.AutenticacaoReducer.erroCadastro
+            erroCadastro: state.AutenticacaoReducer.erroCadastro,
+            loading_cadastro: state.AutenticacaoReducer.loading_cadastro
         }
     );
 }
