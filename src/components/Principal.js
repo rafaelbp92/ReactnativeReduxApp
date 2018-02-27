@@ -15,7 +15,9 @@ export default class Principal extends Component {
     ],
   };
 
-  _handleChangeTab = index => this.setState({ index });
+  //_handleChangeTab = index => this.setState({ index });
+
+  _handleIndexChange = index => this.setState({ index });
 
   _renderHeader = props => <TabBarMenu {...props} />;
 
@@ -31,7 +33,8 @@ export default class Principal extends Component {
         navigationState={this.state}
         renderScene={this._renderScene}
         renderHeader={this._renderHeader}
-        onRequestChangeTab={this._handleChangeTab}
+        //onRequestChangeTab={this._handleChangeTab}
+        onIndexChange={this._handleIndexChange}
       />
     );
   }
