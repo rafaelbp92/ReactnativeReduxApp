@@ -33,6 +33,8 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, nome: '', senha: '', loading_cadastro: false}
         case AUTENTICAR_USUARIO_ERRO:
             return { ...state, erroLogin: action.payload , loading_login: false}
+		case AUTENTICAR_USUARIO_SUCESSO:
+            return { ...state, ...INITIAL_STATE }
         case PROCESSING_LOGIN:
             return { ...state, loading_login: true }
         case PROCESSING_CADASTRO:

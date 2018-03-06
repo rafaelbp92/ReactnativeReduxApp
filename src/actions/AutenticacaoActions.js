@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import { Actions}  from 'react-native-router-flux'; 
+import { Actions } from 'react-native-router-flux';
 import b64 from 'base-64';
 import { 
     MODIFICA_EMAIL, 
@@ -69,10 +69,20 @@ const cadastroUsuarioErro = (erro, dispatch) => {
 }
 
 const autentciarUsuarioSucesso = (dispatch) => {
-    dispatch( {type: AUTENTICAR_USUARIO_SUCESSO});
+    dispatch( 
+		{
+			type: AUTENTICAR_USUARIO_SUCESSO
+		}
+	);
+	
     Actions.principal();
 }
 
 const auntenticarUsuarioErro = (erro, dispatch) => {
-    dispatch( { type: AUTENTICAR_USUARIO_ERRO, payload: erro.message });
+    dispatch (
+        {
+            type: AUTENTICAR_USUARIO_ERRO,
+            payload: erro.message
+        }
+    );
 }
