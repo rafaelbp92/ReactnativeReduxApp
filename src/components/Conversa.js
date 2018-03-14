@@ -26,7 +26,9 @@ class Conversa extends Component {
     _enviarMensagem() {
         const { mensagem, contatoNome, contatoEmail } = this.props;
 
-        this.props.enviarMensagem(mensagem, contatoNome, contatoEmail)
+        this.props.enviarMensagem(mensagem, contatoNome, contatoEmail);
+
+        this.refs.conversation.scrollToEnd( { animated: false } );
     }
 
     renderRow(texto) {
@@ -52,18 +54,23 @@ class Conversa extends Component {
                 <View style={{ flex: 1, paddingBottom: 20 }}>
 
                     <ListView
+                        ref='conversation'
                         enableEmptySections
                         dataSource={this.dataSource}
-                        renderRow={this.renderRow}
+                        renderRow={this.renderRow}            
                     />
                 </View>
 
-                <View style={{ flexDirection: 'row', height: 60}}>
-                    <TextInput 
-                        value={this.props.mensagem}
-                        onChangeText={texto => this.props.modificaMensagem(texto) }
-                        style={{ flex: 4, backgroundColor: '#fff', fontSize: 18 }}
-                    />
+                <View style={{ flexDirection: 'row', height: 60 }}>
+                    <View style={{ flex: 4, backgroundColor: '#fff', borderRadius: 25}}> 
+                        <TextInput 
+                            value={this.props.mensagem}
+                            placeholder='Digite uma mensagem'
+                            underlineColorAndroid='transparent'
+                            onChangeText={texto => this.props.modificaMensagem(texto) }
+                            style={{ flex: 1, fontSize: 18 }}
+                        />
+                    </View>
 
                     <TouchableHighlight onPress={this._enviarMensagem.bind(this)} underlayColor="#fff">
                         <Image source={require('../imgs/enviar_mensagem.png')} />
