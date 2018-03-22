@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { View, Text, TextInput, Image, TouchableHighlight, ListView } from 'react-native';
-import { modificaMensagem, enviarMensagem, conversaUsuarioFetch } from '../actions/AppActions'
+import { modificaMensagem, enviarMensagem, conversaUsuarioFetch } from '../actions/AppActions';
+import ImagePicker from 'react-native-image-crop-picker';
 
 class Conversa extends Component {
 
