@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { View, Text, TextInput, Image, TouchableHighlight, ListView } from 'react-native';
+import { View, Text, TextInput, Image, TouchableHighlight, ListView,NativeModules,Dimensions, Alert } from 'react-native';
 import { modificaMensagem, enviarMensagem, conversaUsuarioFetch } from '../actions/AppActions';
 import ImagePicker from 'react-native-image-crop-picker';
 
@@ -10,6 +10,7 @@ class Conversa extends Component {
     componentWillMount() {
         this.props.conversaUsuarioFetch(this.props.contatoEmail)
         this.criaFonteDeDados( this.props.conversa );
+        var ImagePicker = NativeModules.ImageCropPicker;
     }
 
     componentWillReceiveProps(nextProps) {
@@ -31,6 +32,29 @@ class Conversa extends Component {
 
         this.refs.conversation.scrollToEnd( { animated: false } );
     }
+
+    _pickSingle(cropit, circular=false) {
+        ImagePicker.openPicker({
+          width: 300,
+          height: 300,
+          cropping: cropit,
+          cropperCircleOverlay: circular,
+          compressImageMaxWidth: 640,
+          compressImageMaxHeight: 480,
+          compressImageQuality: 0.5,
+          compressVideoPreset: 'MediumQuality',
+          includeExif: true,
+        }).then(image => {
+          console.log('received image', image);
+          this.setState({
+            image: {uri: image.path, width: image.width, height: image.height, mime: image.mime},
+            images: null
+          });
+        }).catch(e => {
+          console.log(e);
+          Alert.alert(e.message ? e.message : e);
+        });
+      }
 
     renderRow(texto) {
 
@@ -63,7 +87,9 @@ class Conversa extends Component {
                 </View>
 
                 <View style={{ flexDirection: 'row', height: 60 }}>
+                
                     <View style={{ flex: 4, backgroundColor: '#fff', borderRadius: 25}}> 
+                    
                         <TextInput 
                             value={this.props.mensagem}
                             placeholder='Digite uma mensagem'
@@ -72,6 +98,10 @@ class Conversa extends Component {
                             style={{ flex: 1, fontSize: 18 }}
                         />
                     </View>
+                    <TouchableHighlight onPress={() => this._pickSingle(true,true)} underlayColor="#fff">
+                        <Image source={require('../imgs/image_picker.png')} />
+                    </TouchableHighlight>
+
 
                     <TouchableHighlight onPress={this._enviarMensagem.bind(this)} underlayColor="#fff">
                         <Image source={require('../imgs/enviar_mensagem.png')} />
